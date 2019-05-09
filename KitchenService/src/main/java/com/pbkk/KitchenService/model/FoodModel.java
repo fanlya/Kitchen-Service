@@ -1,51 +1,37 @@
 package com.pbkk.KitchenService.model;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity // This tells Hibernate to make a table out of this class
 public class FoodModel {
-	private Integer id_restaurant;	
-	private String foodName;
-	private Boolean foodStatus;
-	private Integer foodCost ;
-	private Integer id_food;
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id_fstatus;
+	private Integer id_makanan;
+	private Boolean food_status;
 	
-	private static Integer id_counter = 0; 
-	
-	public FoodModel(Integer id_restaurant, String foodName,Integer cost,  Boolean status) {
-		this.id_restaurant = id_restaurant;
-		this.foodName = foodName;
-		this.foodStatus = status;
-		this.id_food = id_counter;
-		this.foodCost = cost;
-		id_counter++;
+	public void setId_makanan(Integer id_makanan) {
+		this.id_makanan = id_makanan;
 	}
-	public Integer getId_food() {
-		return id_food;
+	public Integer getId_fstatus() {
+		return id_fstatus;
+	}
+	
+	public void setId_fstatus(Integer id_fstatus) {
+		this.id_fstatus = id_fstatus;
+	}
+	public Integer getId_makanan() {
+		return id_makanan;
+	}
+	
+	public Boolean getStatus() {
+		return food_status;
+	}
+	public void setStatus(Boolean status) {
+		this.food_status = status;
 	}
 
-	public void setId_food(Integer id_food) {
-		this.id_food = id_food;
-	}
-	public Boolean getFoodStatus() {
-		return foodStatus;
-	}
-	public void setFoodStatus(Boolean foodStatus) {
-		this.foodStatus = foodStatus;
-	}
-	public Integer getFoodCost() {
-		return foodCost;
-	}
-	public void setFoodCost(Integer cost) {
-		this.foodCost = cost;
-	}
-	public Integer getId_restaurant() {
-		return id_restaurant;
-	}
-	public void setId_restaurant(Integer id_restaurant) {
-		this.id_restaurant = id_restaurant;
-	}
-	public String getFoodName() {
-		return foodName;
-	}
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
-	}
+	
 }

@@ -7,34 +7,39 @@ import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class KitchenModel {
-	private Integer id_status = 0;
-	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id_ostatus;
 	private Integer id_order;
-	private String status;
-	private static Integer id_counter = 100;
+	private Boolean order_status;
 	
-	public KitchenModel( Integer id_order){
-		id_counter++;
+	public void setId_order(Integer id_order) {
 		this.id_order = id_order;
-		this.id_status = id_counter;
-		this.status = "belum";
-	}
-	public Integer getId_status() {
-		return id_status;
-	}
-	public void setId_status(Integer id_status) {
-		this.id_status = id_status;
 	}
 	public Integer getId_order() {
 		return id_order;
 	}
-	public void setId_order(Integer id_order) {
-		this.id_order = id_order;
+	
+	public void setId_ostatus(Integer id_ostatus) {
+		this.id_ostatus = id_ostatus;
 	}
-	public String getStatus() {
-		return status;
+	public Integer getId_ostatus() {
+		return id_ostatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	
+	public Boolean getStatus() {
+		return order_status;
 	}
+	public void setStatus(Boolean status) {
+		this.order_status = status;
+	}
+	
+//	
+//	public KitchenModel( Integer id_order){
+//		id_counter++;
+//		this.id_order = id_order;
+//		this.id_status = id_counter;
+//		this.status = "belum";
+//	}
+
 }
