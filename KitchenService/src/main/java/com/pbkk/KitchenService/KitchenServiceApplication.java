@@ -12,3 +12,4 @@ public class KitchenServiceApplication {
 	}
 
 }
+//https://spring.io/guides/gs/accessing-data-mysql/

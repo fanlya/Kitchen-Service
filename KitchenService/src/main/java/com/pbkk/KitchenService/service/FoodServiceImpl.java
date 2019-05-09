@@ -3,9 +3,11 @@ package com.pbkk.KitchenService.service;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pbkk.KitchenService.model.FoodModel;
 import com.pbkk.KitchenService.model.KitchenModel;
-
+@Service
 public class FoodServiceImpl implements FoodService {
 	@Override
 	public void createFood(String name, Integer Cost, Integer restaurant_Id, Boolean status) {

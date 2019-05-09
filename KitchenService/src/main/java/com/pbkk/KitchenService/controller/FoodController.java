@@ -19,7 +19,7 @@ import com.pbkk.KitchenService.service.*;
 @RequestMapping("/Food")
 
 public class FoodController {
-//	@Autowired
+	@Autowired
 	FoodService foodService;
 	@ResponseBody
 	@RequestMapping("")
