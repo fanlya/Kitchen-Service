@@ -19,7 +19,7 @@ import com.pbkk.KitchenService.model.*;
 import com.pbkk.KitchenServiceUtil.*;
 
 @RestController
-@RequestMapping("/Kitchen/Food")
+@RequestMapping("/kitchen/food")
 
 public class FoodController {
 
@@ -53,7 +53,7 @@ public class FoodController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/createFood", method = RequestMethod.POST)
+	@RequestMapping(value = "/createfood", method = RequestMethod.POST)
 	public Map<String, Object> createFood(			
 			@RequestParam(value = "id_makanan") Integer id
 			) {
