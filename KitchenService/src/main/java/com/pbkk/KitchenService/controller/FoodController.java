@@ -61,7 +61,7 @@ public class FoodController {
 		//foodService.createFood(name, Cost, restaurant_Id, status);
 		FoodModel f = new FoodModel();
 		f.setId_makanan(id);
-		f.setStatus(false);
+		f.setStatus(0);
 		foodRepository.save(f);
 		return Util.getSuccessResult();
 	}
@@ -70,7 +70,7 @@ public class FoodController {
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public Map<String, Object> updateFoodName(
 			@RequestParam(value = "id_fstatus") Integer id,
-			@RequestParam(value = "status") Boolean status
+			@RequestParam(value = "status") Integer status
 			) {
 		FoodModel k = foodRepository.findById(id).get();
 		k.setStatus(status);

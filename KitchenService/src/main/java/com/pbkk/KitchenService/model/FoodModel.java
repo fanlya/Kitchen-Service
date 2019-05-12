@@ -10,7 +10,7 @@ public class FoodModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_fstatus;
 	private Integer id_makanan;
-	private Boolean food_status;
+	private Integer food_status;
 	
 	public void setId_makanan(Integer id_makanan) {
 		this.id_makanan = id_makanan;
@@ -26,10 +26,10 @@ public class FoodModel {
 		return id_makanan;
 	}
 	
-	public Boolean getStatus() {
+	public Integer getStatus() {
 		return food_status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(Integer status) {
 		this.food_status = status;
 	}
 

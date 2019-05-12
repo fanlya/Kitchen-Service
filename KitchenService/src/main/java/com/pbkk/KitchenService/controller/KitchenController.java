@@ -54,7 +54,7 @@ public class KitchenController {
 			@RequestParam(value = "id_order") Integer id_order) {
 		KitchenModel u = new KitchenModel();
 		u.setId_order(id_order);
-		u.setStatus(false);
+		u.setStatus(0);
 		kitchenRepository.save(u);
 		//kitchenService.createStatus(id_order);
 		return Util.getSuccessResult();
@@ -64,7 +64,7 @@ public class KitchenController {
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public Map<String, Object> updateUser(
 			@RequestParam(value = "id_ostatus") Integer id,
-			@RequestParam(value = "status") Boolean status) {
+			@RequestParam(value = "status") Integer status) {
 		KitchenModel k = kitchenRepository.findById(id).get();
 		k.setStatus(status);
 		kitchenRepository.save(k);
