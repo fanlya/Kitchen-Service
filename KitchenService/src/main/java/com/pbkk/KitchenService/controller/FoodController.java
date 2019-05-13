@@ -1,11 +1,9 @@
 package com.pbkk.KitchenService.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pbkk.KitchenService.Repository.FoodRepository;
-import com.pbkk.KitchenService.Repository.KitchenRepository;
 import com.pbkk.KitchenService.model.*;
 import com.pbkk.KitchenServiceUtil.*;
 
@@ -31,37 +28,21 @@ public class FoodController {
 	@RequestMapping("")
 	public Iterable<FoodModel> test() {
 		return foodRepository.findAll();
-		//return foodService.getAll();
-//		return Util.getSuccessResult(kitchenService.getAll())
 	}
 	
 	@ResponseBody
-	@RequestMapping("/{id}")
-	public Optional<FoodModel> getKitchen(@PathVariable("id") Integer id) {
-		//return foodService.getFoodbyID(id);
+	@RequestMapping("/{id_mstatus}")
+	public Optional<FoodModel> getKitchen(@PathVariable("id_mstatus") Integer id) {
 		return foodRepository.findById(id);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public Map<String, Object> deleteStatus(
-			@RequestParam(value = "id") Integer id) {
-		   
-	    //foodService.deleteFood(id_status);
-		foodRepository.deleteById(id);
-	    return Util.getSuccessResult();
-	}
-	
-	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Map<String, Object> createFood(			
-			@RequestParam(value = "id_makanan") Integer id
-			) {
-		
-		//foodService.createFood(name, Cost, restaurant_Id, status);
+	public Map<String, Object> createFood(@RequestParam(value = "id_makanan") Integer id)
+	{
 		FoodModel f = new FoodModel();
 		f.setId_makanan(id);
-		f.setStatus(0);
+		f.setStatus(false);
 		foodRepository.save(f);
 		return Util.getSuccessResult();
 	}
@@ -69,15 +50,21 @@ public class FoodController {
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public Map<String, Object> updateFoodName(
-			@RequestParam(value = "id_fstatus") Integer id,
-			@RequestParam(value = "status") Integer status
-			) {
-		FoodModel k = foodRepository.findById(id).get();
-		k.setStatus(status);
-		foodRepository.save(k);
-		
-		//foodService.updateFoodName(id_food, foodName);		
+		@RequestParam(value = "id_mstatus") Integer id,
+		@RequestParam(value = "makanan_status") Boolean status)
+	{
+		FoodModel f = foodRepository.findById(id).get();
+		f.setStatus(status);
+		foodRepository.save(f);
 		return Util.getSuccessResult();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
+	public Map<String, Object> deleteStatus(@RequestParam(value = "id_mstatus") Integer id)
+	{
+		foodRepository.deleteById(id);
+	    return Util.getSuccessResult();
 	}
 	
 }
