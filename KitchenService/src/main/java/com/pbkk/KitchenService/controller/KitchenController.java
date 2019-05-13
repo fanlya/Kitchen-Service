@@ -64,10 +64,22 @@ public class KitchenController {
 	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public Map<String, Object> updateUser(
 			@RequestParam(value = "id_ostatus") Integer id,
-			@RequestParam(value = "status") Integer status) {
+			@RequestParam(value = "flag") Boolean flag)
+			 {
+		
 		KitchenModel k = kitchenRepository.findById(id).get();
+		Integer status = k.getStatus();
+		if (flag) {
+			status+=1;
+		}
+		else {
+			status-=1;
+		}
 		k.setStatus(status);
 		kitchenRepository.save(k);
+		if (status == 4) {
+			//post delivery
+		}
 		//kitchenService.updateStatus (id, status);		
 		return Util.getSuccessResult();
 	}
