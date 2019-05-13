@@ -40,16 +40,16 @@ public class KitchenController {
 	}	
 	
 	@ResponseBody
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
 	public Map<String, Object> deleteStatus(
-			@PathVariable("id") Integer id) {
+			@RequestParam(value = "id") Integer id) {
 		kitchenRepository.deleteById(id);
 	    //kitchenService.deleteStatus(id_status); 
 	    return Util.getSuccessResult();
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/createstatus", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> createStatus(			
 			@RequestParam(value = "id_order") Integer id_order) {
 		KitchenModel u = new KitchenModel();
@@ -61,7 +61,7 @@ public class KitchenController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public Map<String, Object> updateUser(
 			@RequestParam(value = "id_ostatus") Integer id,
 			@RequestParam(value = "status") Integer status) {

@@ -43,9 +43,9 @@ public class FoodController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
 	public Map<String, Object> deleteStatus(
-			@PathVariable("id") Integer id) {
+			@RequestParam(value = "id") Integer id) {
 		   
 	    //foodService.deleteFood(id_status);
 		foodRepository.deleteById(id);
@@ -53,7 +53,7 @@ public class FoodController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/createfood", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> createFood(			
 			@RequestParam(value = "id_makanan") Integer id
 			) {
@@ -67,7 +67,7 @@ public class FoodController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public Map<String, Object> updateFoodName(
 			@RequestParam(value = "id_fstatus") Integer id,
 			@RequestParam(value = "status") Integer status
