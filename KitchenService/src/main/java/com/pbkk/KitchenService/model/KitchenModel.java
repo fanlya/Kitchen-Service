@@ -14,6 +14,7 @@ public class KitchenModel {
 	private Integer id_order;
 	private Boolean detailorder_status;
 	private Integer jumlah;
+	private Integer id_makanan;
 	
 	public Integer getId_dostatus() {
 		return id_dostatus;
@@ -46,6 +47,12 @@ public class KitchenModel {
 	}
 	public void setJumlah(Integer jumlah) {
 		this.jumlah = jumlah;
+	}
+	public Integer getId_makanan() {
+		return id_makanan;
+	}
+	public void setId_makanan(Integer id_makanan) {
+		this.id_makanan = id_makanan;
 	}
 
 }

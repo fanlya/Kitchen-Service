@@ -61,6 +61,7 @@ public class KitchenController {
 		k.setId_detailorder(orderRequest.getId_detailorder());
 		k.setId_order(orderRequest.getId_order());
 		k.setJumlah(orderRequest.getJumlah());
+		k.setId_makanan(orderRequest.getId_makanan());
 		k.setStatus(false);
 		kitchenRepository.save(k);
 		return Util.getSuccessResult();
