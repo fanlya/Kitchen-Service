@@ -60,6 +60,7 @@ public class KitchenController {
 		KitchenModel k = new KitchenModel();
 		k.setId_detailorder(orderRequest.getId_detailorder());
 		k.setId_order(orderRequest.getId_order());
+		k.setJumlah(orderRequest.getJumlah());
 		k.setStatus(false);
 		kitchenRepository.save(k);
 		return Util.getSuccessResult();
