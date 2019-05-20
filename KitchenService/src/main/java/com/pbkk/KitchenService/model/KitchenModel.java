@@ -11,6 +11,7 @@ public class KitchenModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_dostatus;
 	private Integer id_detailorder;
+	private Integer id_order;
 	private Boolean detailorder_status;
 	
 	public Integer getId_dostatus() {
@@ -32,6 +33,12 @@ public class KitchenModel {
 	}
 	public void setStatus(Boolean status) {
 		this.detailorder_status = status;
+	}
+	public Integer getId_order() {
+		return id_order;
+	}
+	public void setId_order(Integer id_order) {
+		this.id_order = id_order;
 	}
 
 }

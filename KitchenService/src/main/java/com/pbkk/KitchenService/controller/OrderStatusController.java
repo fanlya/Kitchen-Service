@@ -3,8 +3,11 @@ package com.pbkk.KitchenService.controller;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,10 +41,12 @@ public class OrderStatusController {
 	
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Map<String, Object> createStatus(@RequestParam(value = "id_order") Integer id)
+	public Map<String, Object> createStatus(
+			@Valid @RequestBody OrderStatusModel orderRequest
+			)
 	{
 		OrderStatusModel o = new OrderStatusModel();
-		o.setId_order(id);
+		o.setId_order(orderRequest.getId_order());
 		o.setStatus(0);
 		orderstatusRepository.save(o);
 		return Util.getSuccessResult();

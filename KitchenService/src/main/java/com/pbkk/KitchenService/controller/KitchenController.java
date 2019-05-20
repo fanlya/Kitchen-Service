@@ -3,8 +3,14 @@ package com.pbkk.KitchenService.controller;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +37,15 @@ public class KitchenController {
 	}
 	
 	@ResponseBody
+	@RequestMapping("/order/{id_order}")
+	public Stream<KitchenModel> getKitchenOrder(@PathVariable("id_order") Integer id) {
+		Iterable<KitchenModel> orders = kitchenRepository.findAll();
+		Stream<KitchenModel> orderss = StreamSupport.stream(orders.spliterator(), false);
+		orderss = orderss.filter(order -> order.getId_order().intValue() == id.intValue());
+		return orderss;
+	}
+	
+	@ResponseBody
 	@RequestMapping("/{id_dostatus}")
 	public Optional<KitchenModel> getKitchen(@PathVariable("id_dostatus") Integer id) {
 		return kitchenRepository.findById(id);
@@ -38,10 +53,13 @@ public class KitchenController {
 	
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Map<String, Object> createStatus(@RequestParam(value = "id_detailorder") Integer id)
+	public Map<String, Object> createStatus(
+			@Valid @RequestBody KitchenModel orderRequest
+			)
 	{
 		KitchenModel k = new KitchenModel();
-		k.setId_detailorder(id);
+		k.setId_detailorder(orderRequest.getId_detailorder());
+		k.setId_order(orderRequest.getId_order());
 		k.setStatus(false);
 		kitchenRepository.save(k);
 		return Util.getSuccessResult();
